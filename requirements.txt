@@ -1,3 +1,7 @@
-# Hugging Face Gradio entrypoint; the FastAPI container uses requirements.lock.
+# Spaces installs this file before copying the application source.
+# Keep dependencies standalone: editable local installs cannot run at that stage.
 gradio==6.32.0
--e .
+numpy>=2,<3
+scikit-learn>=1.6,<2
+pypdf>=6.1,<7
+python-docx>=1.2,<2
