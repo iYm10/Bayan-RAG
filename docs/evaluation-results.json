@@ -1,0 +1,344 @@
+{
+  "provider": "demo",
+  "corpus_documents": 5,
+  "corpus_chunks": 19,
+  "hybrid": {
+    "k": 4,
+    "mode": "hybrid",
+    "cases": 12,
+    "answerable_cases": 9,
+    "recall_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "negative_abstention_rate": 1.0,
+    "scope": "Small, hand-authored demo retrieval set; does not measure generated-answer correctness.",
+    "results": [
+      {
+        "question": "How does hybrid search combine BM25 and dense vector similarity?",
+        "expected": [
+          "01-retrieval.md"
+        ],
+        "retrieved": [
+          "01-retrieval.md",
+          "05-security.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "How does Reciprocal Rank Fusion work?",
+        "expected": [
+          "01-retrieval.md"
+        ],
+        "retrieved": [
+          "01-retrieval.md",
+          "03-evaluation.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "What chunk size and overlap does Bayan-RAG use?",
+        "expected": [
+          "02-chunking.md"
+        ],
+        "retrieved": [
+          "02-chunking.md",
+          "04-grounding.md",
+          "03-evaluation.md",
+          "05-security.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "How are scanned documents and OCR handled?",
+        "expected": [
+          "02-chunking.md"
+        ],
+        "retrieved": [
+          "02-chunking.md",
+          "03-evaluation.md",
+          "01-retrieval.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "What do Recall and Mean Reciprocal Rank measure?",
+        "expected": [
+          "03-evaluation.md"
+        ],
+        "retrieved": [
+          "03-evaluation.md",
+          "01-retrieval.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "Does retrieval evaluation measure generated answer correctness?",
+        "expected": [
+          "03-evaluation.md"
+        ],
+        "retrieved": [
+          "03-evaluation.md",
+          "04-grounding.md",
+          "01-retrieval.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "Does citation validation prove semantic support?",
+        "expected": [
+          "04-grounding.md"
+        ],
+        "retrieved": [
+          "04-grounding.md",
+          "03-evaluation.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "How can prompt injection in retrieved documents be mitigated?",
+        "expected": [
+          "05-security.md"
+        ],
+        "retrieved": [
+          "05-security.md",
+          "03-evaluation.md",
+          "04-grounding.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "What controls are needed for public hosting?",
+        "expected": [
+          "05-security.md"
+        ],
+        "retrieved": [
+          "05-security.md",
+          "04-grounding.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "What are the benefits of vitamin C for skin?",
+        "expected": [],
+        "retrieved": [],
+        "recall": null,
+        "reciprocal_rank": null,
+        "expected_abstention": true,
+        "retrieval_abstained": true
+      },
+      {
+        "question": "Who won the football championship yesterday?",
+        "expected": [],
+        "retrieved": [],
+        "recall": null,
+        "reciprocal_rank": null,
+        "expected_abstention": true,
+        "retrieval_abstained": true
+      },
+      {
+        "question": "What is the price of gold today?",
+        "expected": [],
+        "retrieved": [],
+        "recall": null,
+        "reciprocal_rank": null,
+        "expected_abstention": true,
+        "retrieval_abstained": true
+      }
+    ]
+  },
+  "bm25": {
+    "k": 4,
+    "mode": "bm25",
+    "cases": 12,
+    "answerable_cases": 9,
+    "recall_at_k": 1.0,
+    "mrr_at_k": 1.0,
+    "negative_abstention_rate": 1.0,
+    "scope": "Small, hand-authored demo retrieval set; does not measure generated-answer correctness.",
+    "results": [
+      {
+        "question": "How does hybrid search combine BM25 and dense vector similarity?",
+        "expected": [
+          "01-retrieval.md"
+        ],
+        "retrieved": [
+          "01-retrieval.md",
+          "05-security.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "How does Reciprocal Rank Fusion work?",
+        "expected": [
+          "01-retrieval.md"
+        ],
+        "retrieved": [
+          "01-retrieval.md",
+          "03-evaluation.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "What chunk size and overlap does Bayan-RAG use?",
+        "expected": [
+          "02-chunking.md"
+        ],
+        "retrieved": [
+          "02-chunking.md",
+          "04-grounding.md",
+          "03-evaluation.md",
+          "05-security.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "How are scanned documents and OCR handled?",
+        "expected": [
+          "02-chunking.md"
+        ],
+        "retrieved": [
+          "02-chunking.md",
+          "03-evaluation.md",
+          "05-security.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "What do Recall and Mean Reciprocal Rank measure?",
+        "expected": [
+          "03-evaluation.md"
+        ],
+        "retrieved": [
+          "03-evaluation.md",
+          "01-retrieval.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "Does retrieval evaluation measure generated answer correctness?",
+        "expected": [
+          "03-evaluation.md"
+        ],
+        "retrieved": [
+          "03-evaluation.md",
+          "04-grounding.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "Does citation validation prove semantic support?",
+        "expected": [
+          "04-grounding.md"
+        ],
+        "retrieved": [
+          "04-grounding.md",
+          "03-evaluation.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "How can prompt injection in retrieved documents be mitigated?",
+        "expected": [
+          "05-security.md"
+        ],
+        "retrieved": [
+          "05-security.md",
+          "03-evaluation.md",
+          "04-grounding.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "What controls are needed for public hosting?",
+        "expected": [
+          "05-security.md"
+        ],
+        "retrieved": [
+          "05-security.md",
+          "04-grounding.md"
+        ],
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "expected_abstention": false,
+        "retrieval_abstained": false
+      },
+      {
+        "question": "What are the benefits of vitamin C for skin?",
+        "expected": [],
+        "retrieved": [],
+        "recall": null,
+        "reciprocal_rank": null,
+        "expected_abstention": true,
+        "retrieval_abstained": true
+      },
+      {
+        "question": "Who won the football championship yesterday?",
+        "expected": [],
+        "retrieved": [],
+        "recall": null,
+        "reciprocal_rank": null,
+        "expected_abstention": true,
+        "retrieval_abstained": true
+      },
+      {
+        "question": "What is the price of gold today?",
+        "expected": [],
+        "retrieved": [],
+        "recall": null,
+        "reciprocal_rank": null,
+        "expected_abstention": true,
+        "retrieval_abstained": true
+      }
+    ]
+  }
+}

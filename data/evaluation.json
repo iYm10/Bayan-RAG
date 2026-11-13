@@ -1,0 +1,68 @@
+[
+  {
+    "question": "How does hybrid search combine BM25 and dense vector similarity?",
+    "expected_documents": [
+      "01-retrieval.md"
+    ]
+  },
+  {
+    "question": "How does Reciprocal Rank Fusion work?",
+    "expected_documents": [
+      "01-retrieval.md"
+    ]
+  },
+  {
+    "question": "What chunk size and overlap does Bayan-RAG use?",
+    "expected_documents": [
+      "02-chunking.md"
+    ]
+  },
+  {
+    "question": "How are scanned documents and OCR handled?",
+    "expected_documents": [
+      "02-chunking.md"
+    ]
+  },
+  {
+    "question": "What do Recall and Mean Reciprocal Rank measure?",
+    "expected_documents": [
+      "03-evaluation.md"
+    ]
+  },
+  {
+    "question": "Does retrieval evaluation measure generated answer correctness?",
+    "expected_documents": [
+      "03-evaluation.md"
+    ]
+  },
+  {
+    "question": "Does citation validation prove semantic support?",
+    "expected_documents": [
+      "04-grounding.md"
+    ]
+  },
+  {
+    "question": "How can prompt injection in retrieved documents be mitigated?",
+    "expected_documents": [
+      "05-security.md"
+    ]
+  },
+  {
+    "question": "What controls are needed for public hosting?",
+    "expected_documents": [
+      "05-security.md"
+    ]
+  },
+  {
+    "question": "What are the benefits of vitamin C for skin?",
+    "expected_documents": []
+  },
+  {
+    "question": "Who won the football championship yesterday?",
+    "expected_documents": []
+  },
+  {
+    "question": "What is the price of gold today?",
+    "expected_documents": []
+  }
+]

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Bayan-RAG — an evidence-first workspace for technical knowledge."
+    />
+    <meta name="theme-color" content="#112622" />
+    <title>Bayan-RAG · Knowledge, grounded.</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <a class="brand" href="/" aria-label="Bayan-RAG home"
+          ><span class="brandmark"><i></i><i></i><i></i><i></i></span
+          ><span
+            >Bayan<span class="brand-light">-RAG</span
+            ><small>KNOWLEDGE, GROUNDED.</small></span
+          ></a
+        >
+        <div class="workspace-label">YOUR WORKSPACE</div>
+        <nav aria-label="Main navigation">
+          <button class="nav active" data-view="assistant">
+            <span class="nav-icon">✧</span> Knowledge assistant
+            <span class="nav-shortcut">01</span>
+          </button>
+          <button class="nav" data-view="library">
+            <span class="nav-icon">▤</span> Document library
+            <span class="nav-shortcut">02</span>
+          </button>
+          <button class="nav" data-view="evaluation">
+            <span class="nav-icon">▥</span> Evaluation lab
+            <span class="nav-shortcut">03</span>
+          </button>
+        </nav>
+        <div class="sidebar-card">
+          <span class="tiny-label">THE APPROACH</span>
+          <h3>Every answer starts<br />with evidence.</h3>
+          <p>
+            Retrieve the right context.<br />Make the source visible.<br />Measure
+            what matters.
+          </p>
+          <div class="mini-pipeline">
+            <span>Retrieve</span><b>→</b><span>Ground</span><b>→</b
+            ><span>Verify</span>
+          </div>
+        </div>
+        <div class="sidebar-bottom">
+          <span class="status-dot"></span>
+          <div>
+            <b id="provider-label">Connecting</b
+            ><small id="provider-description">Checking workspace status</small>
+          </div>
+          <span class="version">v1.0</span>
+        </div>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div>
+            <span class="breadcrumb">Workspace</span><span class="slash">/</span
+            ><span id="page-label">Knowledge assistant</span>
+          </div>
+          <div class="topbar-right">
+            <span class="local-tag" id="mode-tag">LOCAL WORKSPACE</span
+            ><span class="avatar" aria-label="Personal workspace">B</span>
+          </div>
+        </header>
+        <section
+          class="view active"
+          id="assistant-view"
+          aria-label="Knowledge assistant"
+        >
+          <div class="assistant-grid">
+            <div class="conversation-column">
+              <div id="welcome">
+                <div class="eyebrow">
+                  <span class="eyebrow-line"></span> YOUR TECHNICAL KNOWLEDGE,
+                  CONNECTED
+                </div>
+                <h1>Good questions deserve<br /><em>grounded answers.</em></h1>
+                <p class="intro">
+                  Turn your documents into a knowledge workspace.<br />Ask a
+                  question. Follow the evidence. See how it was found.
+                </p>
+                <div class="stat-row">
+                  <div>
+                    <strong id="stat-docs">0</strong
+                    ><span>Documents indexed</span>
+                  </div>
+                  <div>
+                    <strong id="stat-chunks">0</strong
+                    ><span>Searchable chunks</span>
+                  </div>
+                  <div>
+                    <strong class="stat-type" id="stat-type">Hybrid</strong
+                    ><span>Retrieval strategy</span>
+                  </div>
+                </div>
+                <div class="section-label">
+                  A GOOD PLACE TO START <span>↓</span>
+                </div>
+                <div class="suggestions">
+                  <button
+                    data-question="How does hybrid search combine BM25 and vector similarity?"
+                  >
+                    <span>01 / RETRIEVAL</span
+                    ><b>What makes hybrid search effective?</b><i>→</i></button
+                  ><button
+                    data-question="What do Recall and Mean Reciprocal Rank measure?"
+                  >
+                    <span>02 / EVALUATION</span
+                    ><b>How do we measure retrieval quality?</b><i>→</i></button
+                  ><button
+                    data-question="How can prompt injection in retrieved documents be mitigated?"
+                  >
+                    <span>03 / SECURITY</span
+                    ><b>How should RAG handle untrusted text?</b><i>→</i>
+                  </button>
+                </div>
+              </div>
+              <div id="messages" aria-live="polite"></div>
+              <div class="composer-area">
+                <form id="question-form">
+                  <label class="sr-only" for="question"
+                    >Ask about your documents</label
+                  ><textarea
+                    id="question"
+                    rows="2"
+                    maxlength="2000"
+                    placeholder="Ask a question about your documents…"
+                    required
+                  ></textarea>
+                  <div class="composer-bottom">
+                    <span
+                      ><span class="composer-dot"></span> Answers linked to your
+                      sources</span
+                    ><button
+                      id="ask-button"
+                      type="submit"
+                      aria-label="Ask question"
+                    >
+                      →
+                    </button>
+                  </div>
+                </form>
+                <div class="composer-note">
+                  <span id="answer-note"
+                    >Demo mode returns source excerpts. Connect a model for
+                    generated answers.</span
+                  ><button id="clear-chat">Clear conversation</button>
+                </div>
+              </div>
+            </div>
+            <aside class="context-panel">
+              <div class="panel-title">
+                <span>RETRIEVAL CONTEXT</span
+                ><span class="context-icon">⌁</span>
+              </div>
+              <div class="context-section">
+                <label for="strategy">Search strategy</label
+                ><select id="strategy">
+                  <option value="hybrid">
+                    Hybrid · reciprocal rank fusion
+                  </option>
+                  <option value="bm25">Keyword · BM25 baseline</option></select
+                ><label for="top-k"
+                  >Evidence budget <b id="k-value">4 chunks</b></label
+                ><input id="top-k" type="range" min="1" max="8" value="4" />
+                <div class="range-labels">
+                  <span>Focused</span><span>Broader context</span>
+                </div>
+              </div>
+              <div class="context-section">
+                <div class="panel-subtitle">
+                  SOURCE TRAIL <span id="source-count">0</span>
+                </div>
+                <div id="sources">
+                  <div class="empty-sources">
+                    <div class="document-symbol">▧</div>
+                    <b>Evidence will appear here</b>
+                    <p>
+                      Ask a question to inspect the passages behind the answer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="context-footer">
+                <span>ⓘ</span>
+                <p>
+                  Retrieval scores rank evidence.<br />They are not confidence
+                  estimates.
+                </p>
+              </div>
+            </aside>
+          </div>
+        </section>
+        <section
+          class="view page-view"
+          id="library-view"
+          aria-label="Document library"
+        >
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">THE KNOWLEDGE LAYER</div>
+              <h1>Your document library<span>.</span></h1>
+              <p>
+                A clear source of truth. Every document is split, indexed, and
+                traceable.
+              </p>
+            </div>
+            <button id="seed-button" class="button secondary">
+              Load sample collection <span>→</span>
+            </button>
+          </div>
+          <label class="upload-zone" id="upload-zone" for="upload"
+            ><span class="upload-icon">+</span
+            ><b>Add knowledge to your workspace</b
+            ><span>Choose a document, or drop it here</span
+            ><small
+              >PDF · DOCX · Markdown · TXT &nbsp; / &nbsp; up to 10 MB</small
+            ><input
+              id="upload"
+              type="file"
+              accept=".pdf,.docx,.md,.txt"
+              class="sr-only"
+          /></label>
+          <div class="library-heading">
+            <h2>Indexed documents <span id="library-count">0</span></h2>
+            <span>Content-addressed · Duplicate-safe</span>
+          </div>
+          <div id="document-list"></div>
+          <p class="quiet-note">
+            PDF citations retain original page numbers. DOCX and text files use
+            logical page 1. Scanned PDFs require OCR.
+          </p>
+        </section>
+        <section
+          class="view page-view"
+          id="evaluation-view"
+          aria-label="Evaluation lab"
+        >
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">MEASURE BEFORE YOU CLAIM</div>
+              <h1>Evidence meets evaluation<span>.</span></h1>
+              <p>
+                Inspect retrieval quality against a fixed, isolated reference
+                collection.
+              </p>
+            </div>
+            <button id="evaluate-button" class="button">
+              Run evaluation <span>→</span>
+            </button>
+          </div>
+          <div class="evaluation-banner">
+            <span>◎</span>
+            <div>
+              <b>A small benchmark. An honest signal.</b>
+              <p>
+                12 hand-authored questions · 5 reference documents · top 4
+                chunks. Measures retrieval, not generated-answer correctness.
+                Your uploaded documents are excluded.
+              </p>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <span>DOCUMENT RECALL @ 4</span
+              ><strong id="eval-recall">—</strong>
+              <p>Relevant documents retrieved</p>
+            </div>
+            <div class="metric">
+              <span>DOCUMENT MRR @ 4</span><strong id="eval-mrr">—</strong>
+              <p>First relevant document, deduplicated rank</p>
+            </div>
+            <div class="metric">
+              <span>NEGATIVE ABSTENTION</span
+              ><strong id="eval-abstention">—</strong>
+              <p>Out-of-scope questions with no matches</p>
+            </div>
+          </div>
+          <div id="baseline-comparison" class="baseline-note"></div>
+          <div class="library-heading">
+            <h2>Question-level results</h2>
+            <span>Transparent by design</span>
+          </div>
+          <div id="evaluation-results" class="evaluation-empty">
+            Run an evaluation to inspect each question, expected document, and
+            retrieved result.
+          </div>
+        </section>
+      </main>
+    </div>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>

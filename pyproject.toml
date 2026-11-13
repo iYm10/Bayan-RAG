@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bayan-rag"
+version = "1.0.0"
+description = "An evidence-first bilingual retrieval workspace for technical knowledge."
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "httpx>=0.28,<1",
+  "python-multipart>=0.0.22,<1", "pypdf>=6.1,<7", "python-docx>=1.2,<2",
+  "scikit-learn>=1.6,<2", "numpy>=2,<3", "python-dotenv>=1,<2"
+]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.12,<1", "playwright>=1.50,<2"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+app = ["static/*"]
