@@ -25,8 +25,8 @@ jobs:
           cache-dependency-path: requirements.lock
       - run: python -m pip install --require-hashes -r requirements.lock
       - run: python -m pip install '.[dev]'
-      - run: ruff check app tests scripts
-      - run: ruff format --check app tests scripts
+      - run: ruff check app tests scripts space_app.py
+      - run: ruff format --check app tests scripts space_app.py
       - run: python -m unittest discover -s tests -v
       - run: python scripts/evaluate.py /tmp/evaluation-results.json
       - name: Verify committed offline reference report
@@ -67,3 +67,30 @@ jobs:
         with:
           name: workspace-screenshots
           path: assets/*.png
+
+  gradio:
+    name: Gradio workspace
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt playwright
+      - run: python -m playwright install --with-deps chromium
+      - name: Verify Gradio interactions
+        run: |
+          python space_app.py > /tmp/gradio.log 2>&1 &
+          python - <<'PY'
+          import time
+          import urllib.request
+          for attempt in range(60):
+              try:
+                  urllib.request.urlopen('http://127.0.0.1:7860/config', timeout=2)
+                  break
+              except OSError:
+                  time.sleep(1)
+          else:
+              raise SystemExit('Gradio did not become ready')
+          PY
+          python scripts/gradio_browser_check.py

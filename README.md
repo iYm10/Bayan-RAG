@@ -1,3 +1,16 @@
+---
+title: Bayan-RAG
+emoji: 📚
+colorFrom: green
+colorTo: gray
+sdk: gradio
+sdk_version: 6.32.0
+python_version: "3.12"
+app_file: space_app.py
+pinned: false
+license: mit
+---
+
 <div align="center">
 
 # Bayan-RAG
@@ -24,6 +37,8 @@ Technical knowledge is often spread across papers, internal guides, and long ref
 Bayan-RAG makes the evidence visible throughout the process: which passages were retrieved, how they were ranked, which document they belong to, and which sources each generated claim references.
 
 ## The workspace
+
+An additional **Gradio demo** provides a session-local document collection and offline evidence retrieval for Hugging Face Spaces. It requires no model-provider credentials. Hosting availability follows the platform's current account eligibility rules. See the [Spaces deployment guide](docs/HUGGINGFACE.md).
 
 **Knowledge assistant.** Ask questions against an indexed collection. Follow numbered citations to the underlying passages, inspect retrieval scores, and adjust the search strategy or evidence budget. Questions without matching evidence return an explicit abstention.
 
