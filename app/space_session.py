@@ -20,7 +20,7 @@ def add_document(session, name, content):
     chunks = chunk_pages(extract(name, content))
     if sum(len(c["text"]) for c in session["chunks"] + chunks) > 600_000:
         raise ValueError("Session text limit reached. Reset the collection to continue.")
-    start = len(session["chunks"])
+    start = max((c["id"] for c in session["chunks"]), default=0)
     added = [
         {**c, "id": start + i + 1, "name": name, "document_id": digest}
         for i, c in enumerate(chunks)

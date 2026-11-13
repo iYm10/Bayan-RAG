@@ -11,7 +11,7 @@ An evidence-first workspace that turns technical documents into searchable knowl
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-4b7253)
 
-[Architecture](docs/ARCHITECTURE.md) · [Evaluation](docs/EVALUATION.md) · [API reference](docs/API.md) · [Technical setup](docs/SETUP.md)
+[Live Gradio demo](https://huggingface.co/spaces/yahya-ai10/Bayan-RAG) · [Architecture](docs/ARCHITECTURE.md) · [Evaluation](docs/EVALUATION.md) · [API reference](docs/API.md) · [Technical setup](docs/SETUP.md)
 
 ![Bayan-RAG knowledge workspace](assets/workspace.png)
 
@@ -35,6 +35,14 @@ An additional **Gradio demo** provides a session-local document collection and o
 
 <details>
 <summary>Explore the interface</summary>
+
+**Gradio knowledge studio**
+
+![Gradio knowledge studio](assets/gradio.png)
+
+**Gradio document library**
+
+![Gradio document library](assets/gradio-library.png)
 
 **Document library**
 

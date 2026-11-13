@@ -1,9 +1,29 @@
 import unittest
 
+from app.space_design import library, present
 from app.space_session import add_document, answer, new_session
 
 
 class SpaceSessionTests(unittest.TestCase):
+    def test_html_views_escape_untrusted_text(self):
+        session, _ = add_document(
+            new_session(), "<script>alert(1)</script>.txt", b"Zebras <script>alert(1)</script>"
+        )
+        self.assertNotIn("<script>", library(session))
+        result = answer("Zebras", session)
+        rendered = present("<img src=x onerror=alert(1)>", result, 1.2, "Hybrid")
+        self.assertNotIn("<script>", rendered[1] + rendered[2])
+        self.assertNotIn("<img src=x", rendered[1])
+        self.assertIn("&lt;script&gt;", rendered[2])
+
+    def test_adding_after_removal_keeps_unique_chunk_ids(self):
+        session = new_session()
+        removed = session["chunks"][0]["document_id"]
+        session["chunks"] = [c for c in session["chunks"] if c["document_id"] != removed]
+        session, _ = add_document(session, "new.txt", b"A new document after a removal")
+        ids = [c["id"] for c in session["chunks"]]
+        self.assertEqual(len(ids), len(set(ids)))
+
     def test_uploads_are_isolated_between_sessions(self):
         first, second = new_session(), new_session()
         updated, _ = add_document(

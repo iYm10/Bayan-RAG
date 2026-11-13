@@ -48,6 +48,7 @@ def main():
             folder_path=staging,
             allow_patterns=[
                 "app/*.py",
+                "app/static/gradio.css",
                 "data/**",
                 "docs/**",
                 "assets/**",
