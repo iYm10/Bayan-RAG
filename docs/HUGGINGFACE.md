@@ -1,6 +1,6 @@
 # Gradio on Hugging Face Spaces
 
-The `space_app.py` entrypoint runs the offline retrieval pipeline through Gradio. The root README contains Spaces metadata, and `requirements.txt` declares the Gradio dependency. The existing FastAPI application remains available as a separate entrypoint.
+The `space_app.py` entrypoint runs the offline retrieval pipeline through Gradio. The publisher adds metadata from `space-config.yaml` to the Space README while keeping the GitHub README focused on the project. `requirements.txt` declares the Gradio dependencies. The existing FastAPI application remains available as a separate entrypoint.
 
 ## Free hosting eligibility
 
@@ -14,7 +14,7 @@ The default keyword/character search runs on CPU. The optional semantic search u
 
 1. Create a public Space called `Bayan-RAG` under your account, selecting the Gradio SDK and an available free hardware option.
 2. Upload this repository's tracked files, retaining their directories. Exclude local environments, `.env`, runtime databases, and `.git`.
-3. Ensure the root README retains its YAML metadata, particularly `app_file: space_app.py` and the pinned SDK version.
+3. For a manual upload, prepend the contents of `space-config.yaml` between `---` lines to the Space README. The GitHub publishing workflow does this automatically.
 4. Wait for the build and inspect the application logs if startup fails.
 
 No secrets are needed for this demo. API access to create or upload a Space requires authentication; knowing a public account URL does not grant write access.
