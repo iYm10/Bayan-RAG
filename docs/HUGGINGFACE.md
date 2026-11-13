@@ -8,7 +8,7 @@ Check the platform's current terms before creating a Space. As checked on Novemb
 
 Official references: [Spaces overview](https://huggingface.co/docs/hub/spaces-overview) and [ZeroGPU eligibility](https://huggingface.co/docs/hub/spaces-zerogpu).
 
-This application does not request a GPU or call an inference provider. Its hosting still requires an eligible free Space allocation. If the account does not offer a free allocation, stop rather than enabling billing.
+The default keyword/character search runs on CPU. The optional semantic search uses all-MiniLM-L6-v2 embeddings inside a registered ZeroGPU function and consumes the platform's free GPU quota. It downloads public model weights, but calls no paid inference provider. Hosting requires an eligible free Space allocation. If the account does not offer a free allocation, stop rather than enabling billing.
 
 ## Publish
 
@@ -33,7 +33,7 @@ Each browser session gets its own in-memory collection, initialized with five re
 
 The upload limit is 10 MB per file. Sessions are bounded to 15 documents, 600,000 characters of chunk text, and 100 active states. The queue allows 20 waiting requests and two concurrent handlers per event. These limits support a small demonstration, not a production multi-user document service. Avoid uploading sensitive documents to a public demo.
 
-The response contains verbatim passages with numbered sources, not model-generated synthesis. The evaluation tab displays the committed offline reference results, independently of visitors' uploads.
+Both retrieval paths return verbatim passages with numbered sources, not generative-model synthesis. Semantic search requires a GPU allocation; first use may take longer to download weights. A quota or allocation error does not prevent use of the CPU search. The evaluation tab displays the committed offline reference results, independently of visitors' uploads.
 
 ## Local verification
 

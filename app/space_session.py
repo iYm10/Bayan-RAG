@@ -48,13 +48,17 @@ def answer(question, session, strategy="hybrid", k=4):
     if strategy not in {"hybrid", "bm25"} or not 1 <= int(k) <= 8:
         raise ValueError("Invalid retrieval settings.")
     found = rank(question, session["chunks"], int(k), strategy)
+    return format_evidence(found)
+
+
+def format_evidence(found):
     if not found:
         return (
             "No matching evidence. Add a relevant document or make your question more specific.",
             [],
             [],
         )
-    text = "SOURCE EXCERPTS — NO LANGUAGE MODEL\n\n" + "\n\n".join(
+    text = "VERBATIM SOURCE EXCERPTS\n\n" + "\n\n".join(
         f"[{i + 1}] {c['name']} · page {c['page']}\n{c['text']}" for i, c in enumerate(found[:2])
     )
     rows = [[i + 1, c["name"], c["page"], c["score"], c["bm25"]] for i, c in enumerate(found)]
